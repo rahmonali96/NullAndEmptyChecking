@@ -4,8 +4,10 @@ import com.example.testing.model.A;
 import com.example.testing.model.Message;
 import com.example.testing.model.XReq;
 import com.example.testing.repo.XR;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -64,8 +66,12 @@ public class XS {
         for (Field field : fields) {
             field.setAccessible(true);
             field.set(a, "6774162");
-            System.out.println(field.getName() +" : "+ a.getA());
         }
         return fields.length;
+    }
+
+    public void test(String s) {
+        JSONObject jsonObject = new JSONObject(s);
+        System.out.println(jsonObject.get("a"));
     }
 }
