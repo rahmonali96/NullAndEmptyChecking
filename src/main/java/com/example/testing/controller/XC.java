@@ -1,5 +1,6 @@
 package com.example.testing.controller;
 
+import com.example.testing.model.A;
 import com.example.testing.model.Message;
 import com.example.testing.model.XReq;
 import com.example.testing.service.XS;
@@ -15,5 +16,10 @@ public class XC {
     @PostMapping("/x")
     public ResponseEntity<?> getX(@RequestBody XReq xReq) {
         return xs.check(xReq);
+    }
+
+    @PostMapping("/obj")
+    public ResponseEntity<?> getObj(@RequestBody A a) {
+        return new ResponseEntity<>(xs.getFields(a), HttpStatus.OK);
     }
 }

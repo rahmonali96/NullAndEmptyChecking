@@ -1,5 +1,6 @@
 package com.example.testing.service;
 
+import com.example.testing.model.A;
 import com.example.testing.model.Message;
 import com.example.testing.model.XReq;
 import com.example.testing.repo.XR;
@@ -55,5 +56,16 @@ public class XS {
         xReqTrim.setPhone(xReq.getPhone().trim());
         xReqTrim.setAge(xReq.getAge());
         return xReqTrim;
+    }
+
+    @SneakyThrows
+    public int getFields(A a){
+        Field[] fields = a.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            field.set(a, "6774162");
+            System.out.println(field.getName() +" : "+ a.getA());
+        }
+        return fields.length;
     }
 }
