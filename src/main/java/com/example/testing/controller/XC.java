@@ -29,9 +29,9 @@ public class XC {
         return new ResponseEntity<>(xs.getFields(a1), HttpStatus.OK);
     }
 
-    @PostMapping("/string")
-    public ResponseEntity<?> getS(@RequestBody String s){
-        xs.test(s);
+    @PostMapping("/a")
+    public ResponseEntity<?> getS(@RequestBody A a){
+        xs.test(a);
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 }

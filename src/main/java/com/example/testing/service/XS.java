@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
@@ -70,8 +71,21 @@ public class XS {
         return fields.length;
     }
 
-    public void test(String s) {
-        JSONObject jsonObject = new JSONObject(s);
-        System.out.println(jsonObject.get("a"));
+    @SneakyThrows
+    public void test(A a) {
+        Field[] fields = a.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object o = field.get(a);
+            if (o instanceof Integer){
+                System.out.println(field.getName() + " : Integer");
+            }else if (o instanceof String){
+                System.out.println(field.getName() + " : String");
+            }else if (o instanceof LocalDate){
+                System.out.println(field.getName()+" : Localdate");
+            }else {
+                System.out.println("Other");
+            }
+        }
     }
 }
